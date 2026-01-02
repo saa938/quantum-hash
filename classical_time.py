@@ -3,7 +3,6 @@ import statistics
 import random
 from math import pi, sqrt, floor
 
-# --- Problem parameters ---
 n = 4
 m = n
 A = [
@@ -31,17 +30,14 @@ def toy_hash_bits(x: int) -> str:
     return ''.join(bits)
 
 
-# --- Main quantum search function ---
 def target_function():
     hidden = random.randint(0, 2**n - 1)
     target_bits = toy_hash_bits(hidden)
 
-    # find solutions for r estimation
     S = [x for x in range(2**n) if toy_hash_bits(x) == target_bits]
     m_solutions = len(S)
 
 
-# --- Benchmark ---
 def benchmark(func, runs=10):
     times = []
     for _ in range(runs):
@@ -58,6 +54,7 @@ if __name__ == "__main__":
     print(f"Slowest: {max(execution_times):.6f} s")
     print(f"Average: {statistics.mean(execution_times):.6f} s")
     print(execution_times)
+
 
 
 
